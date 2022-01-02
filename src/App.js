@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+function importAll(r) {
+  return r.keys().map((item, index) => r(item));
+}
+
+const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container-sm pb-5">
+      {
+        images.map(
+          img=>
+          <img src={img} alt={img} key={img} title={img} className="w-100 col-lg-10 py-4"/>
+        )
+      }
     </div>
   );
 }
